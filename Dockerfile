@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:bionic
 
 RUN export BUILD_PACKAGES="curl wget unzip sudo build-essential zlib1g-dev libpcre3-dev uuid-dev gpg gpg-agent" \
   && export SUDO_FORCE_REMOVE=yes \
