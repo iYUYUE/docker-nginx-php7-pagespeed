@@ -37,7 +37,10 @@ RUN export BUILD_PACKAGES="curl wget unzip sudo build-essential zlib1g-dev libpc
   && apt-get remove --purge -y $BUILD_PACKAGES \
   && apt-get autoremove --purge -y \
   && rm -rf /var/lib/apt/lists/* /tmp/* \
-  && rm -f /etc/incron.allow
+  && rm -f /etc/incron.allow \
+  && mkdir -p /var/cache/nginx/client_temp \
+  && mkdir /var/cache/ngx_pagespeed \
+  && chown nginx:nginx /var/cache/ngx_pagespeed
 
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
 
