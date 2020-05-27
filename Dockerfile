@@ -40,7 +40,7 @@ RUN export BUILD_PACKAGES="curl wget unzip sudo build-essential zlib1g-dev libpc
   && rm -f /etc/incron.allow \
   && mkdir -p /var/cache/nginx/client_temp \
   && mkdir /var/cache/ngx_pagespeed \
-  && chown nginx:nginx /var/cache/ngx_pagespeed
+  && chown www-data:www-data /var/cache/ngx_pagespeed
 
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
 
