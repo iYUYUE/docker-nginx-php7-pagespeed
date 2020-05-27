@@ -29,14 +29,20 @@ RUN export BUILD_PACKAGES="curl wget unzip sudo build-essential zlib1g-dev libpc
     php-memcached \
     php-redis \
     supervisor \
+    incron \
   && phpenmod -v mcrypt imap memcached redis \
   && mkdir -p /run/php/ \
   && wget -qO- https://github.com/openresty/headers-more-nginx-module/archive/v${HEADERS_MORE_VERSION}.tar.gz | tar zxf - -C /tmp \
   && bash -c "bash <(curl -f -L -sS https://ngxpagespeed.com/install) --nginx-version latest -a '--prefix=/etc/nginx --sbin-path=/usr/sbin/nginx --modules-path=/usr/lib/nginx/modules --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --lock-path=/var/run/nginx.lock --http-client-body-temp-path=/var/cache/nginx/client_temp --http-proxy-temp-path=/var/cache/nginx/proxy_temp --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp --http-scgi-temp-path=/var/cache/nginx/scgi_temp --user=www-data --group=www-data --with-http_ssl_module --with-http_v2_module --with-http_stub_status_module --with-http_gzip_static_module --with-http_auth_request_module --with-http_secure_link_module --with-http_realip_module' -y" \
   && apt-get remove --purge -y $BUILD_PACKAGES \
   && apt-get autoremove --purge -y \
-  && rm -rf /var/lib/apt/lists/* /tmp/*
+  && rm -rf /var/lib/apt/lists/* /tmp/* \
+  && rm -f /etc/incron.allow
 
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
 
 COPY root /
+
+RUN chmod 0644 /etc/incron.d/run
+
+RUN incrontab /etc/incron.d/run
