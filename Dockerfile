@@ -39,4 +39,4 @@ RUN export BUILD_PACKAGES="curl wget unzip sudo build-essential zlib1g-dev libpc
 
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
 
-COPY .root /
+COPY root /
