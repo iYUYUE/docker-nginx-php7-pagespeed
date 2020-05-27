@@ -1,4 +1,4 @@
-/etc/nginx/ssl/acme/iyuyue.net/	IN_MODIFY,IN_DELETE,IN_CLOSE_WRITE,IN_MOVED_TO /etc/init.d/nginx reload
-/etc/nginx/ssl/acme/intranet.iyuyue.net	IN_MODIFY,IN_DELETE,IN_CLOSE_WRITE,IN_MOVED_TO /etc/init.d/nginx reload
-/etc/nginx/ssl/acme/internet.iyuyue.net	IN_MODIFY,IN_DELETE,IN_CLOSE_WRITE,IN_MOVED_TO /etc/init.d/nginx reload
-/etc/nginx/vhost	IN_MODIFY,IN_DELETE,IN_CLOSE_WRITE,IN_MOVED_TO /etc/init.d/nginx reload
+/etc/nginx/ssl/acme/iyuyue.net/	IN_MODIFY,IN_DELETE,IN_CLOSE_WRITE,IN_MOVED_TO /usr/sbin/nginx -s reload
+/etc/nginx/ssl/acme/intranet.iyuyue.net	IN_MODIFY,IN_DELETE,IN_CLOSE_WRITE,IN_MOVED_TO /usr/sbin/nginx -s reload
+/etc/nginx/ssl/acme/internet.iyuyue.net	IN_MODIFY,IN_DELETE,IN_CLOSE_WRITE,IN_MOVED_TO /usr/sbin/nginx -s reload
+/etc/nginx/vhost	IN_MODIFY,IN_DELETE,IN_CLOSE_WRITE,IN_MOVED_TO /usr/sbin/nginx -s reload
