@@ -48,4 +48,6 @@ COPY root /
 
 RUN chmod 0644 /etc/incron.d/run
 
+RUN chmod +x /var/lib/incron/nginx_reload
+
 RUN incrontab /etc/incron.d/run
