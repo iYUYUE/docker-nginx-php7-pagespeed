@@ -8,6 +8,7 @@ RUN export BUILD_PACKAGES="curl wget unzip sudo build-essential zlib1g-dev libpc
   && apt-get -y --no-install-recommends install ca-certificates $BUILD_PACKAGES \
   && apt-get -y update \
   && apt-get -y --no-install-recommends install \
+    libssl-dev \
     exim4 \
     php7.2-fpm \
     php7.2-mysql \
