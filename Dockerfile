@@ -51,3 +51,5 @@ RUN chmod 0644 /etc/incron.d/run
 RUN chmod +x /var/lib/incron/nginx
 
 RUN incrontab /etc/incron.d/run
+
+CMD /usr/sbin/incrond
