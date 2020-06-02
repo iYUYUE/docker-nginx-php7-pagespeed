@@ -29,7 +29,6 @@ RUN export BUILD_PACKAGES="curl wget unzip sudo build-essential zlib1g-dev libpc
     php-memcached \
     php-redis \
     supervisor \
-    incron \
   && phpenmod -v mcrypt imap memcached redis \
   && mkdir -p /run/php/ \
   && wget -qO- https://github.com/openresty/headers-more-nginx-module/archive/v${HEADERS_MORE_VERSION}.tar.gz | tar zxf - -C /tmp \
@@ -37,7 +36,6 @@ RUN export BUILD_PACKAGES="curl wget unzip sudo build-essential zlib1g-dev libpc
   && apt-get remove --purge -y $BUILD_PACKAGES \
   && apt-get autoremove --purge -y \
   && rm -rf /var/lib/apt/lists/* /tmp/* \
-  && rm -f /etc/incron.allow \
   && mkdir -p /var/cache/nginx/client_temp \
   && mkdir /var/cache/ngx_pagespeed \
   && chown www-data:www-data /var/cache/ngx_pagespeed
@@ -45,11 +43,3 @@ RUN export BUILD_PACKAGES="curl wget unzip sudo build-essential zlib1g-dev libpc
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisord.conf"]
 
 COPY root /
-
-RUN chmod 0644 /etc/incron.d/run
-
-RUN chmod +x /var/lib/incron/nginx
-
-RUN incrontab /etc/incron.d/run
-
-CMD /usr/sbin/incrond
